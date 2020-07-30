@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
+import { Switch, Route, withRouter, Link } from 'react-router-dom'
 import useApp from '../CustomHooks/useApp'
 
 
 function App() {
 
-  const businessList = useApp()
-  
+  const businessInfo = useApp()
+  useEffect(() => {
+
+  }, [])
+
 
   return (
     <div className="App">
