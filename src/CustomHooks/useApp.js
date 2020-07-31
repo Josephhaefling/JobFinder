@@ -120,13 +120,9 @@ function useApp() {
       })
       return availableJobs
     }
-
-    useEffect(async () => {
-        await addBusinessListToState()
+    useEffect(() => {
+      addBusinessListToState()
     }, [])
-
-
-
 
     return {businessList: businessList, availableJobs: availableJobs}
 }
