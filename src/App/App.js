@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
 import { Switch, Route, withRouter, Link } from 'react-router-dom'
+import moment from 'moment';
 import useApp from '../CustomHooks/useApp'
 import JobsContainer from '../JobsContainer/JobsContainer'
 
@@ -28,7 +29,7 @@ function App() {
           <img data-testid="user-image" />
           <h5 data-testid="user-rating">Your Rating: 4.9</h5>
         </section>
-        <JobsContainer jobs={availableJobsList} />
+        <JobsContainer jobs={availableJobsList} currentUser={userId} />
       </main>
     </section>
   );
