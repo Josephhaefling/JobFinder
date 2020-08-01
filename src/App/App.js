@@ -75,6 +75,7 @@ function App() {
             setJobIsComplete={ setJobIsComplete }
             setStartTime={ setStartTime }
             setEndTime={ setEndTime }
+            avavialbleJobsList={ availableJobsList }
             setAvailableJobsList={ setAvailableJobsList }
           />
         )
