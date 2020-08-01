@@ -1,11 +1,15 @@
 import React from 'react'
 import moment from 'moment';
 import './StartJob.css';
+import { Link } from 'react-router-dom'
+
 
 
 function StartJob(props) {
+  const { setJobIsStarted, setJobIsComplete, jobIsStarted, setStartTime, setEndTime } = props
   const { businessName, contactPerson, personImage, jobDate, time, bathroomInfo, breakroomInfo, cost } = props.jobInfo
   const { street, city, state, postcode } = props.jobInfo.location
+
 return (
   <section data-testid="start-job-page" className="start-job-page">
     <h1 data-testid="contact-person" className="contact-person">Contact: {contactPerson.first} {contactPerson.last}</h1>
@@ -19,8 +23,30 @@ return (
         <p data-testid="breakroom-info" className="breakroom-info">{breakroomInfo} breakroom</p>
         </section>
         <h2 data-testid="job-pay" className="job-pay">${cost}</h2>
-        <button data-testid="start-job" className="start-job">Start Job</button>
-        <button data-testid="finish-job" className="finish-job">Finish Job</button>
+        <button
+          data-testid="start-job"
+          className="start-job"
+          onClick={() => {
+            setJobIsStarted(true)
+            setStartTime(moment().format("hh:mm:ss a"))
+          }}
+        >Start Job</button>
+        <Link
+          to="/RateBusiness"
+          style={{ textDecoration: 'none', color: 'inherit' }}
+          className="finish-job"
+        >
+
+          <button
+            data-testid="finish-job"
+            className="finish-job"
+            disabled={!jobIsStarted}
+            onClick={() => {
+              setJobIsComplete(true)
+              setEndTime(moment().format("hh:mm:ss a"))
+          }}
+          >Finish Job</button>
+      </Link>
     </section>
   </section>
 )

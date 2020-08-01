@@ -5,6 +5,7 @@ import moment from 'moment';
 import useApp from '../CustomHooks/useApp'
 import JobsContainer from '../JobsContainer/JobsContainer'
 import StartJob from '../StartJob/StartJob'
+import RateBusiness from '../RateBusiness/RateBusiness'
 
 
 
@@ -13,6 +14,10 @@ function App() {
   const [ currentJob, setCurrentJob ] = useState({})
   const [ currentBusinessList, setBusinessList ] = useState([])
   const [ availableJobsList, setAvailableJobsList ] = useState([])
+  const [ jobIsStarted, setJobIsStarted ] = useState(false)
+  const [ jobIsComplete, setJobIsComplete ] = useState(false)
+  const [ startTime, setStartTime ] = useState('')
+  const [ endTime, setEndTime ] = useState('')
   const { businessList, availableJobs } = useApp()
   const mainPage = (
     <section data-testid="App" className="App">
@@ -24,7 +29,11 @@ function App() {
           <h3 data-testid="user-greeting" className="user-greeting">Welcome Back, Michael!</h3>
           <img data-testid="user-image" className="user-image" />
         </section>
-        <JobsContainer jobs={availableJobsList} currentUser={userId} setCurrentJob={setCurrentJob} />
+        <JobsContainer
+          jobs={ availableJobsList }
+          currentUser={ userId }
+          setCurrentJob={ setCurrentJob }
+        />
       </main>
     </section>
   )
@@ -37,6 +46,16 @@ function App() {
   return (
     <Switch>
     <Route
+      exact path="/RateBusiness"
+      render={(routeProps) => {
+        const { params } = routeProps.match
+        const { id } = params
+        return (
+          <RateBusiness />
+        )
+      }}
+    />
+    <Route
       exact path="/:currentJob"
       render={(routeProps) => {
         const { params } = routeProps.match
@@ -44,8 +63,13 @@ function App() {
         return (
           <StartJob
             {...routeProps}
-            jobInfo={currentJob}
-            setCurrentJob={setCurrentJob}
+            jobInfo={ currentJob }
+            setCurrentJob={ setCurrentJob }
+            jobIsStarted={ jobIsStarted }
+            setJobIsStarted={ setJobIsStarted }
+            setJobIsComplete={ setJobIsComplete }
+            setStartTime={ setStartTime }
+            setEndTime={ setEndTime }
           />
         )
       }}
