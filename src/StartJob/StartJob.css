@@ -1,0 +1,36 @@
+.start-job-page {
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contact-person {
+  width: 90vw;
+}
+.contact-image {
+  width: 90vw;
+}
+
+.business-name {
+  width: 90vw;
+}
+
+.address-container {
+  width: 90vw;
+}
+
+.job-description-container {
+  width: 90vw;
+}
+
+.job-pay {
+  width: 90vw;
+}
+
+.start-job {
+  width: 45vw;
+}
+
+.finish-job {
+  width: 45vw;
+}
