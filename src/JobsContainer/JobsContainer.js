@@ -7,6 +7,7 @@ import './JobsContainer.css';
 
 function JobsContainer(props) {
   const { jobs, currentUser } = props
+  console.log(jobs);
   const jobsList = useJobsContainer(jobs, currentUser)
 
   const todaysJobs = jobsList && jobsList.map(job => (
@@ -22,7 +23,7 @@ function JobsContainer(props) {
       </Link>
     )
   )
-
+  console.log('JobsContainer rerender');
   return (
     <section data-testid="user-jobs" className="user-jobs" >
       {todaysJobs}

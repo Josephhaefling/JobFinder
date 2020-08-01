@@ -5,6 +5,7 @@ function useJobsContainer(jobsList, userId) {
     const sortedJobsKeys = Object.keys(allJobsSortedByUser)
     return sortedJobsKeys.map(key => sortJobsByTime(allJobsSortedByUser[key]))
   }
+  console.log(jobsList);
 
   const sortJobsByTime = (userJobs) => {
     const matches = []
@@ -33,6 +34,7 @@ function useJobsContainer(jobsList, userId) {
     }
 
     const allJobsSortedByUser = jobsSortedByUser()
+    console.log(allJobsSortedByUser);
     const allUsersJobs = jobsSortedByTime(allJobsSortedByUser)
     const currentUsersJobs = getASpecificUsersJobs(allUsersJobs, userId)
 

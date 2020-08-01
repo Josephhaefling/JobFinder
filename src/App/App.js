@@ -10,15 +10,15 @@ import RateBusiness from '../RateBusiness/RateBusiness'
 
 
 function App() {
-  const [ userId, setUseId ] = useState(3)
+  const { businessList, availableJobs } = useApp()
+  const [ availableJobsList, setAvailableJobsList ] = useState([])
   const [ currentJob, setCurrentJob ] = useState({})
   const [ currentBusinessList, setBusinessList ] = useState([])
-  const [ availableJobsList, setAvailableJobsList ] = useState([])
-  const [ jobIsStarted, setJobIsStarted ] = useState(false)
-  const [ jobIsComplete, setJobIsComplete ] = useState(false)
-  const [ startTime, setStartTime ] = useState('')
   const [ endTime, setEndTime ] = useState('')
-  const { businessList, availableJobs } = useApp()
+  const [ jobIsComplete, setJobIsComplete ] = useState(false)
+  const [ jobIsStarted, setJobIsStarted ] = useState(false)
+  const [ startTime, setStartTime ] = useState('')
+  const [ userId, setUseId ] = useState(3)
   const mainPage = (
     <section data-testid="App" className="App">
       <nav data-testid="nav-bar" className="nav-bar">
@@ -51,7 +51,12 @@ function App() {
         const { params } = routeProps.match
         const { id } = params
         return (
-          <RateBusiness />
+          <RateBusiness
+            currentJob={ currentJob }
+            setCurrentJob={ setCurrentJob }
+            setAvailableJobs={ setAvailableJobsList }
+            availableJobsList={ availableJobsList }
+          />
         )
       }}
     />
@@ -70,6 +75,7 @@ function App() {
             setJobIsComplete={ setJobIsComplete }
             setStartTime={ setStartTime }
             setEndTime={ setEndTime }
+            setAvailableJobsList={ setAvailableJobsList }
           />
         )
       }}
