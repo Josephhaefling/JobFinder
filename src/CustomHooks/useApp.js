@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react'
+import moment from 'moment';
+const todaysDate = moment()
+
+
 
 function useApp() {
     const [error, setError] = useState('')
     const [businessList, setBusinessList] = useState([])
     const [availableJobs, setAvailableJobs] = useState([])
-
     const businessNames = [
         "Brothers", "Ophelia's", "Oskar Blues", "Slice Works", "Garbanzo", "Turing School of Software and Design",
         "Randos Bar & Grill", "Migration Taco", "Jax", "Whole Foods", "Union Station", "REI", "Tupelo Honey",
         "Denver Performing Arts Complex", "Beet Box Bakery", "Watercourse Food", "City O' City", "Make Believe Bakery",
         "Random Marijuana Shop", "Punchbowl Social", "3 Kings", "Lost Lake", "Some Lawyer's Office", "Wax Trax"
     ]
-
     const numBathrooms = [1, 2, 3, 4,]
-
     const toiletsPerBathroom = [1, 2, 3, 4, 5, 6, 7]
-
     const userId = [1, 2, 3, 4, 5]
-
     const suppliesFee = [5, 10, 15 ,20]
     const numBreakrooms = [1, 2]
     const jobDate = []
@@ -39,7 +38,7 @@ function useApp() {
 
 
     const getRandomPeople = () => {
-      return fetch('https://randomuser.me/api/?results=100')
+      return fetch('https://randomuser.me/api/?results=20')
               .then(res => res.json())
     }
 
@@ -98,12 +97,14 @@ function useApp() {
           return currentBusiness
     }
 
+
     const createJob = (businessList) => {
       const jobWithCost = businessList.map(business => createCost(business))
       const availableJobs =  jobWithCost.map(job => {
       const { bathroomInfo, breakroomInfo, location, phone, picture, name, businessName, jobCost, userTime, jobTime, userId} = job
         const newJob = {
             jobId: Date.now(),
+            jobDate: todaysDate.format('MM/DD/YYYY'),
             businessName: businessName,
             location: location,
             phone: phone,
@@ -113,19 +114,15 @@ function useApp() {
             breakroomInfo: breakroomInfo,
             cost: jobCost,
             time: jobTime,
-            employeeId:userId
+            employeeId: userId
           }
           return newJob
       })
       return availableJobs
     }
-
-    useEffect(async () => {
-        await addBusinessListToState()
+    useEffect(() => {
+      addBusinessListToState()
     }, [])
-
-
-
 
     return {businessList: businessList, availableJobs: availableJobs}
 }

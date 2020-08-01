@@ -1,25 +1,19 @@
 import React, {useEffect} from 'react'
 import useJobsContainer from '../CustomHooks/useJobsContainer'
+import Job from '../Job/Job'
+import './JobsContainer.css';
+
 
 function JobsContainer(props) {
-  const { jobs } = props
-  const jobsSortedByTime = useJobsContainer(jobs)
-  // console.log(jobsSortedByTime);
+  const { jobs, currentUser } = props
+  const jobsList = useJobsContainer(jobs, currentUser)
+
+  const todaysJobs = jobsList && jobsList.map(job => <Job key={job.time} job={job} />)
+
   return (
-    <section data-testid="user-jobs" >
-      <h3>5:00</h3>
-      <h3>6:00</h3>
-      <h3>7:00</h3>
-      <h3>8:00</h3>
-      <h3>9:00</h3>
-      <h3>10:00</h3>
-      <h3>11:00</h3>
-      <h3>12:00</h3>
-      <h3>1:00</h3>
-      <h3>2:00</h3>
-      <h3>3:00</h3>
-      <h3>4:00</h3>
-      <h3>5:00</h3>
+    <section data-testid="user-jobs" className="user-jobs" >
+      {todaysJobs}
+
     </section>
   )
 }
