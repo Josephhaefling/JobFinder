@@ -4,7 +4,7 @@ import './RateBusiness.css';
 
 
 function RateBusiness(props) {
-  const { availableJobsList, setAvailableJobs, setCurrentJob, setCompletedJobs, completedJobs } = props
+  const { availableJobsList, setAvailableJobs, setCurrentJob, setCompletedJobs, completedJobs, setFavoriteJobs, favoriteJobs } = props
   const { businessName, employeeId, jobId } = props.currentJob
   const [ doJobAgain, setDoJobAgain ] = useState(false)
   const [ askedToDoExtraWork, setAskedToDoExtraWork ] = useState(false)
@@ -338,6 +338,8 @@ return (
           data-testid="submit-btn"
           className="submit-business-rating"
           onClick={() => {
+            wouldYouDoJobAgain && setFavoriteJobs([...favoriteJobs, props.currentJob])
+            console.log(wouldYouDoJobAgain);
             setCurrentJob('')
             setAvailableJobs(newJobsList)}
           }

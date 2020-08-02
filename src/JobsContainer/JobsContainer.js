@@ -8,7 +8,7 @@ import './JobsContainer.css';
 function JobsContainer(props) {
 
 
-  const { jobs, currentUser, setCurrentUsersJobs, currentUsersJobs } = props
+  const { jobs, currentUser, setCurrentUsersJobs, currentUsersJobs, setFavoriteJobs, favoriteJobs, removeFromFavorites } = props
   const jobsList = useJobsContainer(jobs, currentUser)
   const getAllSpecificUsersJobs = (jobList) => {
     const user = currentUser
@@ -19,6 +19,7 @@ function JobsContainer(props) {
 
 
   const todaysJobs = jobsForCurrentUser && jobsForCurrentUser.map(job => (
+    <section>
     <Link
         to={`/${job.businessName}`}
         aria-label="current-job"
@@ -27,8 +28,18 @@ function JobsContainer(props) {
         style={{ textDecoration: 'none' }}
         onClick={() => props.setCurrentJob(job)}
       >
-        <Job key={job.time} job={job} id={job.employeeId} />
+        <Job
+          key={job.time}
+          job={job}
+          id={job.employeeId}
+          favoriteJobs={ favoriteJobs }
+          setFavoriteJobs={ setFavoriteJobs }
+          removeFromFavorites={ removeFromFavorites }
+        />
       </Link>
+        <button onClick={() => setFavoriteJobs([...favoriteJobs, job])}>Fav</button>
+        <button name={job.jobId} onClick={(event) => removeFromFavorites(event)}>unFav</button>
+      </section>
     )
   )
 
