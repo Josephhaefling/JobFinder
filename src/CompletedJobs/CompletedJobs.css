@@ -1,4 +1,5 @@
 .completed-jobs-container {
+  background-color: #FFFCF2;
   display: flex;
   flex-direction: column;
   align-items: center;

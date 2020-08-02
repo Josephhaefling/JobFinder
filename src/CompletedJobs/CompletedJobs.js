@@ -26,7 +26,6 @@ function CompletedJobs(props) {
       </Link>
     )
   )
-  console.log(allCompletedJobs);
 
   return (
     <section data-testid="completed-jobs-container" className="completed-jobs-container">

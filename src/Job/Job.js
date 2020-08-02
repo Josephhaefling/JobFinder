@@ -3,10 +3,10 @@ import { Switch, Route, withRouter, Link } from 'react-router-dom'
 import './Job.css';
 
 function Job(props) {
-  const { businessName,time, bathroomInfo, breakroomInfo, cost, employeeId } = props.job
+  const { businessName, time, bathroomInfo, breakroomInfo, cost, employeeId } = props.job
   const { street, city, state, postcode } =props.job.location
 
-  const mainPage = (
+  const job = (
     <section data-testid="job-container" className="job-container">
     <h1>{employeeId}</h1>
       <h1 data-testid="job-time" className="job-time">{time}</h1>
@@ -24,9 +24,9 @@ function Job(props) {
   )
 
 return (
-  <Switch>
-    <Route exact path="/" render={() => mainPage} />
-  </Switch>
+  <section data-testid="job" className="job">
+    {job}
+  </section>
 
   )
 }
