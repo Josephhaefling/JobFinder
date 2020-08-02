@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 
 function StartJob(props) {
-  const { setCurrentJob, setAvailableJobs, availableJobsList } = props
+  const { setCurrentJob, setAvailableJobsList, availableJobsList } = props
   const { businessName, contactPerson, personImage, jobDate, time, bathroomInfo, breakroomInfo, cost } = props.jobInfo
   const { street, city, state, postcode } = props.jobInfo.location
 return (
@@ -24,20 +24,17 @@ return (
         <h2 data-testid="job-pay" className="job-pay">${cost}</h2>
         <button data-testid="start-job" className="start-job">Start Job</button>
         <Link
-            to={'/'}
+            to={'/RateBusiness'}
             aria-label="submit rating btn"
             data-testid="submit-rating-btn"
             style={{ textDecoration: 'none' }}
           >
-            <button
-              data-testid="finish-job "
-              class
-              onClick={() => {
-                setCurrentJob('none')
-                setAvailableJobs(availableJobsList)}
-              }
-            >Submit</button>
-      </Link>
+          <button
+            data-testid="finish-job"
+            className="finish-job"
+            >
+            Finish Job</button>
+          </Link>
     </section>
   </section>
 )

@@ -1,11 +1,12 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 
 function useJobsContainer(jobsList, userId) {
+  console.log(jobsList);
+
   const jobsSortedByTime = (allJobsSortedByUser) => {
     const sortedJobsKeys = Object.keys(allJobsSortedByUser)
     return sortedJobsKeys.map(key => sortJobsByTime(allJobsSortedByUser[key]))
   }
-  console.log(jobsList);
 
   const sortJobsByTime = (userJobs) => {
     const matches = []
@@ -29,16 +30,17 @@ function useJobsContainer(jobsList, userId) {
         }, {})
     }
 
-    const getASpecificUsersJobs = (allUsersJobs, user) => {
-      return allUsersJobs[user]
+    if(jobsList.length === 20 ) {
+      const allJobsSortedByUser = jobsSortedByUser()
+      const allUsersJobs = jobsSortedByTime(allJobsSortedByUser)
+      return allUsersJobs
+    } else {
+      const allJobsSortedByUser = jobsSortedByUser()
+      const allUsersJobs = jobsSortedByTime(allJobsSortedByUser)
+      return allUsersJobs
     }
 
-    const allJobsSortedByUser = jobsSortedByUser()
-    console.log(allJobsSortedByUser);
-    const allUsersJobs = jobsSortedByTime(allJobsSortedByUser)
-    const currentUsersJobs = getASpecificUsersJobs(allUsersJobs, userId)
 
-
-  return currentUsersJobs
 }
+
 export default useJobsContainer

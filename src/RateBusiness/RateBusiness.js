@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import './RateBusiness.css';
+
 
 function RateBusiness(props) {
   const { availableJobsList, setAvailableJobs, setCurrentJob } = props
-  const { businessName, jobId } = props.currentJob
+  const { businessName, employeeId, jobId } = props.currentJob
   const [ doJobAgain, setDoJobAgain ] = useState(false)
   const [ askedToDoExtraWork, setAskedToDoExtraWork ] = useState(false)
   const [ staffWasRespectful, setStaffWasRespectful ] = useState(0)
@@ -19,15 +21,16 @@ function RateBusiness(props) {
   const [ wouldYouDoJobAgain, setWouldYouDoJobAgain ] = useState(null)
   const [ wasStaffRespectful, setWasStaffRespectful ] = useState(null)
   const [ easyToFind, setEasyToFind ] = useState(null)
-  const jobToRemove = availableJobsList && availableJobsList.find(availableJob => availableJob.jobId === jobId)
-  const jobToRemoveIndex = availableJobsList.indexOf(jobToRemove)
-  const newJobList = availableJobsList.splice(jobToRemoveIndex)
+  const jobToRemove = availableJobsList && availableJobsList.find(availableJob => availableJob && availableJob.jobId === jobId)
+  const newJobsList = availableJobsList.filter(availableJob => availableJob && availableJob.jobId !== jobToRemove.jobId)
 
 return (
-  <form>
-  <h1>{businessName}</h1>
-  <p>Did you change the trash?</p>
-  <label>
+  <form data-testid="rate-business-form">
+  <h1 class="name-of-business">{businessName}</h1>
+  <p className="rate-business-questions">
+  Did you change the trash?</p>
+  <section className="question-container">
+  <label className="rate-business-btn">
     <input
       type="radio"
       checked={changedTrash === true}
@@ -36,7 +39,7 @@ return (
     />
     Yes
   </label>
-  <label>
+  <label className="rate-business-btn">
     <input
     type="radio"
     checked={changedTrash === false}
@@ -44,9 +47,13 @@ return (
     onChange={(event) => setChangedTrash(false)}/>
     No
   </label>
-  <p>Did you refill the toilet paper?</p>
-  <label>
+  </section>
+  <p className="rate-business-questions">
+  Did you refill the toilet paper?</p>
+  <section className="question-container">
+  <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={changedToiletPaper === true}
     value='Yes'
@@ -54,8 +61,9 @@ return (
   />
     Yes
   </label>
-  <label>
+  <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={changedToiletPaper === false}
     value='No'
@@ -63,9 +71,13 @@ return (
   />
     No
   </label>
-  <p>Did you refill the hand soap?</p>
-  <label>
+  </section>
+  <p className="rate-business-questions">
+  Did you refill the hand soap?</p>
+  <section className="question-container">
+  <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={refilledHandSoap === true}
     value='Yes'
@@ -73,8 +85,9 @@ return (
   />
     Yes
   </label>
-  <label>
+  <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={refilledHandSoap === false}
     value='No'
@@ -82,9 +95,13 @@ return (
   />
     No
   </label>
-  <p>Did you refill the paper towels?</p>
-  <label>
+  </section>
+  <p className="rate-business-questions">
+  Did you refill the paper towels?</p>
+  <section className="question-container">
+  <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={refilledPaperTowls === true}
     value='Yes'
@@ -92,8 +109,9 @@ return (
   />
     Yes
   </label>
-  <label>
+  <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={refilledPaperTowls === false}
     value='No'
@@ -101,9 +119,13 @@ return (
   />
     No
   </label>
-  <p>Did you clean all of the toilets?</p>
-  <label>
+  </section>
+  <p className="rate-business-questions">
+  Did you clean all of the toilets?</p>
+  <section className="question-container">
+  <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={cleanedToilets === true}
     value='Yes'
@@ -111,8 +133,9 @@ return (
   />
     Yes
   </label>
-  <label>
+  <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={cleanedToilets === false}
     value='No'
@@ -120,28 +143,37 @@ return (
   />
     No
   </label>
-  <p>Did you clean all of the sinks?</p>
-  <label>
+  </section>
+  <p className="rate-business-questions">
+  Did you clean all of the sinks?</p>
+  <section className="question-container">
+  <label className="rate-business-btn">
     <input
     type="radio"
+    className="rate-business-questions"
     checked={cleanedSinks === true}
     value='Yes'
     onChange={(event) => setCleanedSinks(true)}
   />
     Yes
   </label>
-  <label>
+  <label className="rate-business-btn">
     <input
     type="radio"
+    className="rate-business-questions"
     checked={cleanedSinks === false}
     value='No'
     onChange={(event) => setCleanedSinks(false)}
   />
     No
   </label>
-  <p>Was job easy to find?</p>
-  <label>
+  </section>
+  <p className="rate-business-questions">
+  Was job easy to find?</p>
+  <section className="question-container">
+  <label className="rate-business-btn">
   <input
+  className="rate-business-questions"
   type="radio"
   checked={easyToFind === 1}
   value='1'
@@ -149,41 +181,49 @@ return (
   />
     1
   </label>
-  <label>
+  <label className="rate-business-btn">
   <input
+  className="rate-business-questions"
   type="radio"
   checked={easyToFind === 2}
   value='2'
   onChange={(event) => setEasyToFind(2)}
   />    2
   </label>
-  <label>
+  <label className="rate-business-btn">
   <input
+  className="rate-business-questions"
   type="radio"
   checked={easyToFind === 3}
   value='3'
   onChange={(event) => setEasyToFind(3)}
   />    3
   </label>
-  <label>
+  <label className="rate-business-btn">
   <input
+  className="rate-business-questions"
   type="radio"
   checked={easyToFind === 4}
   value='4'
   onChange={(event) => setEasyToFind(4)}
   />    4
   </label>
-  <label>
+  <label className="rate-business-btn">
   <input
+  className="rate-business-questions"
   type="radio"
   checked={easyToFind === 5}
   value='5'
   onChange={(event) => setEasyToFind(5)}
   />    5
   </label>
-    <p>Was staff respectful?</p>
-    <label>
+  </section>
+  <p className="rate-business-questions">
+  Was staff respectful?</p>
+  <section className="question-container">
+    <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={staffWasRespectful === 1}
     value='1'
@@ -191,8 +231,9 @@ return (
     />      1
 
     </label>
-    <label>
+    <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={staffWasRespectful === 2}
     value='2'
@@ -200,8 +241,9 @@ return (
     />      2
 
     </label>
-    <label>
+    <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={staffWasRespectful === 3}
     value='3'
@@ -209,8 +251,9 @@ return (
     />      3
 
     </label>
-    <label>
+    <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={staffWasRespectful === 4}
     value='4'
@@ -218,18 +261,22 @@ return (
     />      4
 
     </label>
-    <label>
+    <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={staffWasRespectful === 5}
     value='5'
     onChange={(event) => setStaffWasRespectful(5)}
     />      5
-
     </label>
-    <p>Was contact person present?</p>
-    <label>
+    </section>
+    <p className="rate-business-questions">
+    Was contact person present?</p>
+    <section>
+    <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={contactPresent === true}
     value='Yes'
@@ -237,8 +284,9 @@ return (
     />
     Yes
     </label>
-    <label>
+    <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={contactPresent === false}
     value='No'
@@ -246,9 +294,13 @@ return (
     />
     No
     </label>
-    <p>Would you like to do this job again?</p>
-    <label>
+    </section>
+    <p className="rate-business-questions">
+      Would you like to do this job again?</p>
+      <section className="question-container">
+    <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={wouldYouDoJobAgain === true}
     value='Yes'
@@ -256,8 +308,9 @@ return (
     />
     Yes
     </label>
-    <label>
+    <label className="rate-business-btn">
     <input
+    className="rate-business-questions"
     type="radio"
     checked={wouldYouDoJobAgain === false}
     value='No'
@@ -265,17 +318,20 @@ return (
     />
     No
     </label>
+    </section>
 
     <Link
         to={'/'}
         aria-label="submit rating btn"
-        data-testid="submit-rating-btn"
+        data-testid="submit-link"
         style={{ textDecoration: 'none' }}
       >
         <button
+          data-testid="submit-btn"
+          className="submit-business-rating"
           onClick={() => {
-            setCurrentJob('none')
-            setAvailableJobs(availableJobsList)}
+            setCurrentJob('')
+            setAvailableJobs(newJobsList)}
           }
         >Submit</button>
       </Link>

@@ -10,15 +10,16 @@ import RateBusiness from '../RateBusiness/RateBusiness'
 
 
 function App() {
-  const { businessList, availableJobs } = useApp()
   const [ availableJobsList, setAvailableJobsList ] = useState([])
   const [ currentJob, setCurrentJob ] = useState({})
   const [ currentBusinessList, setBusinessList ] = useState([])
+  const [currentUsersJobs, setCurrentUsersJobs] = useState([])
   const [ endTime, setEndTime ] = useState('')
   const [ jobIsComplete, setJobIsComplete ] = useState(false)
   const [ jobIsStarted, setJobIsStarted ] = useState(false)
   const [ startTime, setStartTime ] = useState('')
   const [ userId, setUseId ] = useState(3)
+  const { businessList, availableJobs } = useApp(availableJobsList) || {businessList: currentBusinessList, availableJobs: availableJobsList}
   const mainPage = (
     <section data-testid="App" className="App">
       <nav data-testid="nav-bar" className="nav-bar">
@@ -32,7 +33,9 @@ function App() {
         <JobsContainer
           jobs={ availableJobsList }
           currentUser={ userId }
-          setCurrentJob={ setCurrentJob }
+          currentUsersJobs={ currentUsersJobs }
+          setCurrentJob={ setCurrentJob } 
+          setCurrentUsersJobs={setCurrentUsersJobs}
         />
       </main>
     </section>
