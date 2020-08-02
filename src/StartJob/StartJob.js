@@ -1,9 +1,12 @@
 import React from 'react'
 import moment from 'moment';
 import './StartJob.css';
+import { Link } from 'react-router-dom'
+
 
 
 function StartJob(props) {
+  const { setCurrentJob, setAvailableJobsList, availableJobsList } = props
   const { businessName, contactPerson, personImage, jobDate, time, bathroomInfo, breakroomInfo, cost } = props.jobInfo
   const { street, city, state, postcode } = props.jobInfo.location
 return (
@@ -20,7 +23,18 @@ return (
         </section>
         <h2 data-testid="job-pay" className="job-pay">${cost}</h2>
         <button data-testid="start-job" className="start-job">Start Job</button>
-        <button data-testid="finish-job" className="finish-job">Finish Job</button>
+        <Link
+            to={'/RateBusiness'}
+            aria-label="submit rating btn"
+            data-testid="submit-rating-btn"
+            style={{ textDecoration: 'none' }}
+          >
+          <button
+            data-testid="finish-job"
+            className="finish-job"
+            >
+            Finish Job</button>
+          </Link>
     </section>
   </section>
 )

@@ -3,11 +3,12 @@ import { Switch, Route, withRouter, Link } from 'react-router-dom'
 import './Job.css';
 
 function Job(props) {
-  const { businessName,time, bathroomInfo, breakroomInfo, cost } = props.job
+  const { businessName,time, bathroomInfo, breakroomInfo, cost, employeeId } = props.job
   const { street, city, state, postcode } =props.job.location
 
   const mainPage = (
     <section data-testid="job-container" className="job-container">
+    <h1>{employeeId}</h1>
       <h1 data-testid="job-time" className="job-time">{time}</h1>
       <h2 data-testid="business-name" className="business-name">{businessName}</h2>
       <section data-testid="address-container" className="address-container">

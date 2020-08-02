@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment';
+const shortid = require('shortid');
 const todaysDate = moment()
 
 
 
-function useApp() {
+function useApp(availableJobsList) {
+    const jobsList = availableJobsList
     const [error, setError] = useState('')
     const [businessList, setBusinessList] = useState([])
     const [availableJobs, setAvailableJobs] = useState([])
@@ -103,7 +105,7 @@ function useApp() {
       const availableJobs =  jobWithCost.map(job => {
       const { bathroomInfo, breakroomInfo, location, phone, picture, name, businessName, jobCost, userTime, jobTime, userId} = job
         const newJob = {
-            jobId: Date.now(),
+            jobId: shortid.generate(),
             jobDate: todaysDate.format('MM/DD/YYYY'),
             businessName: businessName,
             location: location,
@@ -120,11 +122,16 @@ function useApp() {
       })
       return availableJobs
     }
+
     useEffect(() => {
-      addBusinessListToState()
+
+        addBusinessListToState()
     }, [])
 
-    return {businessList: businessList, availableJobs: availableJobs}
+    if(jobsList.length === 0) {
+      return { businessList: businessList, availableJobs: availableJobs }
+    }
+
 }
 
 

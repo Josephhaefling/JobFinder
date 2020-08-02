@@ -6,10 +6,18 @@ import './JobsContainer.css';
 
 
 function JobsContainer(props) {
-  const { jobs, currentUser } = props
-  const jobsList = useJobsContainer(jobs, currentUser)
 
-  const todaysJobs = jobsList && jobsList.map(job => (
+
+  const { jobs, currentUser, setCurrentUsersJobs, currentUsersJobs } = props
+  const jobsList = useJobsContainer(jobs, currentUser)
+  const getAllSpecificUsersJobs = (jobList) => {
+    const user = currentUser
+    return jobsList[currentUser - 1]
+  }
+  const jobsForCurrentUser = getAllSpecificUsersJobs(currentUser)
+
+
+  const todaysJobs = jobsForCurrentUser && jobsForCurrentUser.map(job => (
     <Link
         to={`/${job.businessName}`}
         aria-label="current-job"
@@ -18,7 +26,7 @@ function JobsContainer(props) {
         style={{ textDecoration: 'none' }}
         onClick={() => props.setCurrentJob(job)}
       >
-        <Job key={job.time} job={job} />
+        <Job key={job.time} job={job} id={job.employeeId} />
       </Link>
     )
   )
@@ -26,7 +34,6 @@ function JobsContainer(props) {
   return (
     <section data-testid="user-jobs" className="user-jobs" >
       {todaysJobs}
-
     </section>
   )
 }

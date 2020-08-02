@@ -1,0 +1,25 @@
+form {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFCF2;
+}
+.name-of-business {
+  background-color: #403D39;
+  color: #FFFCF2;
+}
+
+.question-container {
+  width: 90vw;
+  display: flex;
+  margin-left: 4%;
+}
+
+.rate-business-btn {
+    width: 15vw;
+    margin: 4% 3% 0% 1%;
+  }
+
+.rate-business-questions {
+    font-weight: bold;
+    margin: 4% 3% 0% 4%;
+  }
