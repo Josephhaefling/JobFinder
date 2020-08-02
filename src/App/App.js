@@ -9,6 +9,7 @@ import RateBusiness from '../RateBusiness/RateBusiness'
 import Options from '../Options/Options'
 import Header from '../Header/Header'
 import CompletedJobs from '../CompletedJobs/CompletedJobs'
+import Favorites from '../Favorites/Favorites'
 
 
 
@@ -19,12 +20,20 @@ function App() {
   const [ currentBusinessList, setBusinessList ] = useState([])
   const [currentUsersJobs, setCurrentUsersJobs] = useState([])
   const [ endTime, setEndTime ] = useState('')
+  const [ favoriteJobs, setFavoriteJobs ] = useState([])
   const [ isOnHomePage, setIsOnHomePage ] = useState(true)
   const [ jobIsComplete, setJobIsComplete ] = useState(false)
   const [ jobIsStarted, setJobIsStarted ] = useState(false)
   const [ startTime, setStartTime ] = useState('')
   const [ userId, setUseId ] = useState(3)
   const { businessList, availableJobs } = useApp(availableJobsList) || {businessList: currentBusinessList, availableJobs: availableJobsList}
+  const removeFromFavorites = (event, favJobs) => {
+    const removeId = event.target.name
+    const jobToRemove = favoriteJobs.find(job => job.jobId === removeId)
+    const newFavsArray = favoriteJobs.filter(job => job.jobId !== jobToRemove.jobId)
+    setFavoriteJobs(newFavsArray)
+    
+  }
   const mainPage = (
     <section data-testid="App" className="App">
       <main data-testid="main-page" className="main-page">
@@ -33,6 +42,9 @@ function App() {
         </section>
         <JobsContainer
           jobs={ availableJobsList }
+          favoriteJobs={ favoriteJobs }
+          setFavoriteJobs={ setFavoriteJobs }
+          removeFromFavorites={ removeFromFavorites }
           currentUser={ userId }
           currentUsersJobs={ currentUsersJobs }
           setCurrentJob={ setCurrentJob }
@@ -49,6 +61,20 @@ function App() {
 
   return (
     <Switch>
+    <Route
+      exact path="/Favorite-Jobs"
+      render={(routeProps) => {
+        const { params } = routeProps.match
+        const { id } = params
+        return (
+          <section>
+            <Header isOnHomePage={ isOnHomePage } setIsOnHomePage={ setIsOnHomePage } />
+            <Favorites favoriteJobs={ favoriteJobs }/>
+          </section>
+        )
+      }}
+    />
+
     <Route
       exact path="/Completed-Jobs"
       render={(routeProps) => {
@@ -91,6 +117,8 @@ function App() {
             availableJobsList={ availableJobsList }
             completedJobs={ completedJobs }
             setCompletedJobs={ setCompletedJobs }
+            favoriteJobs={ favoriteJobs }
+            setFavoriteJobs={ setFavoriteJobs }
           />
           </section>
         )

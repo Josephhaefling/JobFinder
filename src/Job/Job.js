@@ -3,6 +3,7 @@ import { Switch, Route, withRouter, Link } from 'react-router-dom'
 import './Job.css';
 
 function Job(props) {
+  // const { setFavoriteJobs, favoriteJobs, removeFromFavorites } = props
   const { businessName, time, bathroomInfo, breakroomInfo, cost, employeeId } = props.job
   const { street, city, state, postcode } =props.job.location
 
@@ -20,6 +21,7 @@ function Job(props) {
         <p data-testid="breakroom-info" className="breakroom-info">{breakroomInfo} breakroom</p>
         </section>
         <h2 data-testid="job-pay" className="job-pay">${cost}</h2>
+
      </section>
   )
 
