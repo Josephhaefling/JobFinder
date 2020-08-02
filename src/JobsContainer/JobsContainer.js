@@ -17,6 +17,7 @@ function JobsContainer(props) {
   const jobsForCurrentUser = getAllSpecificUsersJobs(currentUser)
 
 
+
   const todaysJobs = jobsForCurrentUser && jobsForCurrentUser.map(job => (
     <Link
         to={`/${job.businessName}`}
@@ -33,7 +34,7 @@ function JobsContainer(props) {
 
   return (
     <section data-testid="user-jobs" className="user-jobs" >
-      {todaysJobs}
+      { todaysJobs }
     </section>
   )
 }

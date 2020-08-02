@@ -4,7 +4,7 @@ import './RateBusiness.css';
 
 
 function RateBusiness(props) {
-  const { availableJobsList, setAvailableJobs, setCurrentJob } = props
+  const { availableJobsList, setAvailableJobs, setCurrentJob, setCompletedJobs, completedJobs } = props
   const { businessName, employeeId, jobId } = props.currentJob
   const [ doJobAgain, setDoJobAgain ] = useState(false)
   const [ askedToDoExtraWork, setAskedToDoExtraWork ] = useState(false)
@@ -24,9 +24,17 @@ function RateBusiness(props) {
   const jobToRemove = availableJobsList && availableJobsList.find(availableJob => availableJob && availableJob.jobId === jobId)
   const newJobsList = availableJobsList.filter(availableJob => availableJob && availableJob.jobId !== jobToRemove.jobId)
 
+  const addToCompletedJobs = () => {
+    if(jobToRemove) {
+      setCompletedJobs([...completedJobs, jobToRemove])
+    }
+  }
+
+  useEffect(() => addToCompletedJobs(), completedJobs)
+
 return (
   <form data-testid="rate-business-form">
-  <h1 class="name-of-business">{businessName}</h1>
+  <h1 className="name-of-business">{businessName}</h1>
   <p className="rate-business-questions">
   Did you change the trash?</p>
   <section className="question-container">

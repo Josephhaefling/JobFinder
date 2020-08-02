@@ -1,0 +1,13 @@
+.completed-jobs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: #252422;
+  justify-content: center;
+  display: flex;
+  width: 100vw;
+}

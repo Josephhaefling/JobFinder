@@ -8,15 +8,18 @@ import StartJob from '../StartJob/StartJob'
 import RateBusiness from '../RateBusiness/RateBusiness'
 import Options from '../Options/Options'
 import Header from '../Header/Header'
+import CompletedJobs from '../CompletedJobs/CompletedJobs'
 
 
 
 function App() {
   const [ availableJobsList, setAvailableJobsList ] = useState([])
   const [ currentJob, setCurrentJob ] = useState({})
+  const [ completedJobs, setCompletedJobs ] = useState([])
   const [ currentBusinessList, setBusinessList ] = useState([])
   const [currentUsersJobs, setCurrentUsersJobs] = useState([])
   const [ endTime, setEndTime ] = useState('')
+  const [ isOnHomePage, setIsOnHomePage ] = useState(true)
   const [ jobIsComplete, setJobIsComplete ] = useState(false)
   const [ jobIsStarted, setJobIsStarted ] = useState(false)
   const [ startTime, setStartTime ] = useState('')
@@ -24,10 +27,9 @@ function App() {
   const { businessList, availableJobs } = useApp(availableJobsList) || {businessList: currentBusinessList, availableJobs: availableJobsList}
   const mainPage = (
     <section data-testid="App" className="App">
-      <main data-testid="main-page" className="mainn-page">
+      <main data-testid="main-page" className="main-page">
         <section data-testid="user-info-section" className="userInfo-section">
           <h3 data-testid="user-greeting" className="user-greeting">Welcome Back, Michael!</h3>
-          <img data-testid="user-image" className="user-image" />
         </section>
         <JobsContainer
           jobs={ availableJobsList }
@@ -48,13 +50,26 @@ function App() {
   return (
     <Switch>
     <Route
+      exact path="/Completed-Jobs"
+      render={(routeProps) => {
+        const { params } = routeProps.match
+        const { id } = params
+        return (
+          <section>
+            <Header isOnHomePage={ isOnHomePage } setIsOnHomePage={ setIsOnHomePage } />
+            <CompletedJobs completedJobs={ completedJobs }/>
+          </section>
+        )
+      }}
+    />
+    <Route
       exact path="/Options"
       render={(routeProps) => {
         const { params } = routeProps.match
         const { id } = params
         return (
           <section>
-            <Header />
+            <Header isOnHomePage={ isOnHomePage } setIsOnHomePage={ setIsOnHomePage } />
             <Options
           />
           </section>
@@ -68,12 +83,14 @@ function App() {
         const { id } = params
         return (
           <section>
-          <Header />
+          <Header isOnHomePage={ isOnHomePage } setIsOnHomePage={ setIsOnHomePage } />
           <RateBusiness
             currentJob={ currentJob }
             setCurrentJob={ setCurrentJob }
             setAvailableJobs={ setAvailableJobsList }
             availableJobsList={ availableJobsList }
+            completedJobs={ completedJobs }
+            setCompletedJobs={ setCompletedJobs }
           />
           </section>
         )
@@ -86,7 +103,7 @@ function App() {
         const { id } = params
         return (
           <section>
-          <Header />
+          <Header isOnHomePage={ isOnHomePage } setIsOnHomePage={ setIsOnHomePage } />
           <StartJob
             {...routeProps}
             jobInfo={ currentJob }
@@ -106,7 +123,7 @@ function App() {
       <Route exact path="/" render={() => {
         return (
         <section>
-          <Header />
+          <Header isOnHomePage={ isOnHomePage } setIsOnHomePage={ setIsOnHomePage } />
           {mainPage}
         </section>
       )
