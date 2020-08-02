@@ -6,6 +6,8 @@ import useApp from '../CustomHooks/useApp'
 import JobsContainer from '../JobsContainer/JobsContainer'
 import StartJob from '../StartJob/StartJob'
 import RateBusiness from '../RateBusiness/RateBusiness'
+import Options from '../Options/Options'
+import Header from '../Header/Header'
 
 
 
@@ -22,9 +24,6 @@ function App() {
   const { businessList, availableJobs } = useApp(availableJobsList) || {businessList: currentBusinessList, availableJobs: availableJobsList}
   const mainPage = (
     <section data-testid="App" className="App">
-      <nav data-testid="nav-bar" className="nav-bar">
-        <h1 data-testid="main-header" className="main-header" >Nine2Five</h1>
-      </nav>
       <main data-testid="main-page" className="mainn-page">
         <section data-testid="user-info-section" className="userInfo-section">
           <h3 data-testid="user-greeting" className="user-greeting">Welcome Back, Michael!</h3>
@@ -34,7 +33,7 @@ function App() {
           jobs={ availableJobsList }
           currentUser={ userId }
           currentUsersJobs={ currentUsersJobs }
-          setCurrentJob={ setCurrentJob } 
+          setCurrentJob={ setCurrentJob }
           setCurrentUsersJobs={setCurrentUsersJobs}
         />
       </main>
@@ -49,17 +48,34 @@ function App() {
   return (
     <Switch>
     <Route
+      exact path="/Options"
+      render={(routeProps) => {
+        const { params } = routeProps.match
+        const { id } = params
+        return (
+          <section>
+            <Header />
+            <Options
+          />
+          </section>
+        )
+      }}
+    />
+    <Route
       exact path="/RateBusiness"
       render={(routeProps) => {
         const { params } = routeProps.match
         const { id } = params
         return (
+          <section>
+          <Header />
           <RateBusiness
             currentJob={ currentJob }
             setCurrentJob={ setCurrentJob }
             setAvailableJobs={ setAvailableJobsList }
             availableJobsList={ availableJobsList }
           />
+          </section>
         )
       }}
     />
@@ -69,6 +85,8 @@ function App() {
         const { params } = routeProps.match
         const { id } = params
         return (
+          <section>
+          <Header />
           <StartJob
             {...routeProps}
             jobInfo={ currentJob }
@@ -81,10 +99,19 @@ function App() {
             avavialbleJobsList={ availableJobsList }
             setAvailableJobsList={ setAvailableJobsList }
           />
+          </section>
         )
       }}
     />
-      <Route exact path="/" render={() => mainPage} />
+      <Route exact path="/" render={() => {
+        return (
+        <section>
+          <Header />
+          {mainPage}
+        </section>
+      )
+
+      }} />
     </Switch>
   );
 }
