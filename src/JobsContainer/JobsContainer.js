@@ -34,7 +34,7 @@ function JobsContainer(props) {
   const todaysJobs = jobsForCurrentUser && jobsForCurrentUser.map(job => {
     const favButton = getFavoritedJob(job)
     return (
-    <section className="jobs-container">
+    <section className="jobs-container" data-testid="jobs-container">
     <Link
         to={`/${job.businessName}`}
         aria-label="current-job"

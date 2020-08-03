@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 
 function useJobsContainer(jobsList, userId) {
-  console.log(jobsList);
 
   const jobsSortedByTime = (allJobsSortedByUser) => {
     const sortedJobsKeys = Object.keys(allJobsSortedByUser)

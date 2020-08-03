@@ -1,7 +1,8 @@
 import React from 'react'
 import Job from './Job'
 import { render } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history';
 
 describe('Job', () => {
 
@@ -59,4 +60,5 @@ describe('Job', () => {
     expect(jobPay).toBeInTheDocument()
   })
 
+  //Test that jobs are links and that the url path changes when a job is clicked
 })

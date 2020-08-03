@@ -3,7 +3,6 @@ import { Switch, Route, withRouter, Link } from 'react-router-dom'
 import './Job.css';
 
 function Job(props) {
-  // const { setFavoriteJobs, favoriteJobs, removeFromFavorites } = props
   const { businessName, time, bathroomInfo, breakroomInfo, cost, employeeId } = props.job
   const { street, city, state, postcode } =props.job.location
 

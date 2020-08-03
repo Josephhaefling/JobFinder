@@ -25,8 +25,6 @@ describe('App', () => {
     const mainPage = getByTestId('main-page')
     const userInfoSection = getByTestId('user-info-section')
     const userGreeting = getByTestId('user-greeting')
-    const userImage = getByTestId('user-image')
-    const userRating = getByTestId('user-rating')
 
     expect(app).toBeInTheDocument()
     expect(navBar).toBeInTheDocument()
@@ -34,7 +32,6 @@ describe('App', () => {
     expect(mainPage).toBeInTheDocument()
     expect(userInfoSection).toBeInTheDocument()
     expect(userGreeting).toBeInTheDocument()
-    expect(userImage).toBeInTheDocument()
-    expect(userRating).toBeInTheDocument()
+
   })
 })

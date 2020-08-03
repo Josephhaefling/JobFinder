@@ -45,11 +45,11 @@ describe('useApp', () => {
     global.fetch.mockClear()
   })
 
-    it('should make the api call to fetch the default value and set it in the state', async () => {
+    it.skip('should make the api call to fetch the default value and set it in the state', async () => {
     const { result, waitForNextUpdate } = renderHook(() => useApp())
     await waitForNextUpdate()
     expect(fetch).toHaveBeenCalledTimes(1)
-    
+
     expect(result.current.jobs.length).toEqual(1)
   })
 })

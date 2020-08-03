@@ -39,7 +39,7 @@ function Header(props) {
   })
 
   return(
-    <section>
+    <section data-testid="header-section">
       <nav data-testid="nav-bar" className="nav-bar">
         <h1 data-testid="main-header" className="main-header" >Nine2Five</h1>
         { createButton() }
