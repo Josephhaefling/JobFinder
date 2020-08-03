@@ -6,9 +6,10 @@
   justify-content: center;
 }
 
-a {
+.completed-links {
   color: #252422;
   justify-content: center;
   display: flex;
+  text-decoration: none;
   width: 100vw;
 }

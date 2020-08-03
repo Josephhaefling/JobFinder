@@ -339,7 +339,6 @@ return (
           className="submit-business-rating"
           onClick={() => {
             wouldYouDoJobAgain && setFavoriteJobs([...favoriteJobs, props.currentJob])
-            console.log(wouldYouDoJobAgain);
             setCurrentJob('')
             setAvailableJobs(newJobsList)}
           }

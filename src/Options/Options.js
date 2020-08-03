@@ -14,7 +14,7 @@ function Options() {
       <Link
           to={'/Completed-Jobs'}
           aria-label="options-page"
-          data-testid="options-page"
+          data-testid="completed-jobs-link"
           style={{ textDecoration: 'none' }}
       >
           <button className="option-btn">Completed Jobs</button>
@@ -22,7 +22,7 @@ function Options() {
       <Link
           to={'/Make-Schedule'}
           aria-label="options-page"
-          data-testid="options-page"
+          data-testid="make-schedule-link"
           style={{ textDecoration: 'none' }}
       >
           <button className="option-btn">Make Schedule</button>
@@ -30,7 +30,7 @@ function Options() {
       <Link
           to={'/Favorite-Jobs'}
           aria-label="options-page"
-          data-testid="options-page"
+          data-testid="favorite-jobs-link"
           style={{ textDecoration: 'none' }}
       >
       <button className="option-btn">Favorite Jobs</button>

@@ -17,6 +17,7 @@ function CompletedJobs(props) {
     <Link
         to={`/${job.businessName}`}
         aria-label="current-job"
+        className="completed-links"
         data-testid={job.time}
         key={job.time}
         style={{ textDecoration: 'none' }}

@@ -1,14 +1,22 @@
 import React from 'react'
 import StartJob from './StartJob'
-import { render } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { render, fireEvent } from '@testing-library/react'
+import { MemoryRouter, Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history';
+
 
 describe('StartJob', () => {
 
   let startJobElement
+  let startJobElement1
   let jobInfo
+  let setStartTime
+  let setEndTime
 
   beforeEach(() => {
+    setStartTime = jest.fn().mockImplementation(() => {})
+    setEndTime = jest.fn().mockImplementation(() => {})
+
 
     jobInfo = (
       {
@@ -29,13 +37,14 @@ describe('StartJob', () => {
 
     startJobElement = (
       <MemoryRouter>
-        <StartJob jobInfo={jobInfo} />
+        <StartJob jobInfo={jobInfo} setStartTime={setStartTime} setEndTime={setEndTime} />
       </MemoryRouter>
     )
   })
 
   it('should render the current job to the page', () => {
     const { getByTestId } = render(startJobElement)
+
     const contactPerson = getByTestId('contact-person')
     const contactImage = getByTestId('contact-image')
     const businessName = getByTestId('business-name')
@@ -61,6 +70,50 @@ describe('StartJob', () => {
     expect(jobPay).toBeInTheDocument()
     expect(startJob).toBeInTheDocument()
     expect(finishJob).toBeInTheDocument()
+  })
+
+  it('should record the job start time', () => {
+    const { getByTestId } = render(startJobElement)
+
+    const startJobBtn = getByTestId('start-job')
+
+    fireEvent.click(startJobBtn)
+    expect(setStartTime).toBeCalledTimes(1)
+  })
+
+  it('shouild record the job end time', () => {
+    const { getByTestId } = render(startJobElement)
+
+    const finishJobBtn = getByTestId('finish-job')
+
+    fireEvent.click(finishJobBtn)
+
+    expect(setEndTime).toBeCalledTimes(1)
+  })
+
+  it('should change the url path when the link is clicked', () => {
+    const { getByTestId } = render(startJobElement)
+
+    const submitRatingBtn = getByTestId('submit-rating-btn')
+
+  })
+
+  it('should change to the route path of /RateBusiness when the finsh job button is clicked', async () => {
+    const testHistoryObject = createMemoryHistory()
+
+    const { getByTestId } = render(
+      <Router history={testHistoryObject}>
+        <StartJob jobInfo={jobInfo} setStartTime={setStartTime} setEndTime={setEndTime} />
+      </Router>
+    )
+
+    expect(testHistoryObject.location.pathname).toEqual('/')
+
+    const submitRatingLink = getByTestId('submit-rating-btn')
+
+    fireEvent.click(submitRatingLink)
+
+    expect(testHistoryObject.location.pathname).toEqual('/RateBusiness')
   })
 
 })

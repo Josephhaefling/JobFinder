@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 
 function StartJob(props) {
-  const { setCurrentJob, setAvailableJobsList, availableJobsList } = props
+  const { setCurrentJob, setAvailableJobsList, availableJobsList, setStartTime, setEndTime } = props
   const { businessName, contactPerson, personImage, jobDate, time, bathroomInfo, breakroomInfo, cost } = props.jobInfo
   const { street, city, state, postcode } = props.jobInfo.location
 return (
@@ -22,7 +22,7 @@ return (
         <p data-testid="breakroom-info" className="breakroom-info">{breakroomInfo} breakroom</p>
         </section>
         <h2 data-testid="job-pay" className="job-pay">${cost}</h2>
-        <button data-testid="start-job" className="start-job">Start Job</button>
+        <button data-testid="start-job" className="start-job" onClick={() => setStartTime(moment().format("hh:mm:ss a"))}>Start Job</button>
         <Link
             to={'/RateBusiness'}
             aria-label="submit rating btn"
@@ -32,6 +32,7 @@ return (
           <button
             data-testid="finish-job"
             className="finish-job"
+            onClick={() => setEndTime(moment().format("hh:mm:ss a"))}
             >
             Finish Job</button>
           </Link>
