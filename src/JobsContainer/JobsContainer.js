@@ -10,7 +10,6 @@ import notFavorited from '../assets/notFavorited.png'
 
 function JobsContainer(props) {
 
-
   const { jobs, currentUser, setCurrentUsersJobs, currentUsersJobs, setFavoriteJobs, favoriteJobs, removeFromFavorites, findJob } = props
   const jobsList = useJobsContainer(jobs, currentUser)
   const getAllSpecificUsersJobs = (jobList) => {

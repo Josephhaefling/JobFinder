@@ -1,6 +1,8 @@
 import React from 'react'
 import moment from 'moment';
 import './StartJob.css';
+import finishJob from '../assets/finish-flag.png'
+import startJob from '../assets/stopwatch.png'
 import { Link } from 'react-router-dom'
 
 
@@ -22,20 +24,22 @@ return (
         <p data-testid="breakroom-info" className="breakroom-info">{breakroomInfo} breakroom</p>
         </section>
         <h2 data-testid="job-pay" className="job-pay">${cost}</h2>
-        <button data-testid="start-job" className="start-job" onClick={() => setStartTime(moment().format("hh:mm:ss a"))}>Start Job</button>
+        <section className="buttons-container">
+        <img src={startJob} data-testid="start-job" className="start-job-btn" onClick={() => setStartTime(moment().format("hh:mm:ss a"))} />
         <Link
             to={'/RateBusiness'}
             aria-label="submit rating btn"
             data-testid="submit-rating-btn"
             style={{ textDecoration: 'none' }}
           >
-          <button
+          <img
+            src={finishJob}
             data-testid="finish-job"
             className="finish-job"
             onClick={() => setEndTime(moment().format("hh:mm:ss a"))}
-            >
-            Finish Job</button>
+            />
           </Link>
+      </section>
     </section>
   </section>
 )

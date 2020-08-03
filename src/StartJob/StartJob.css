@@ -1,36 +1,39 @@
-/* .start-job-page {
-  border: 2px solid red;
+.start-job-page {
+  background-color: #FFFCF2;
+  color: #403D39;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 5% 0 5% 0;
 }
 .contact-person {
+  text-align: center;
   width: 90vw;
+  
 }
 .contact-image {
-  width: 90vw;
+  border-radius: 3px;
+  width: 80vw;
+  box-shadow: 3px 4px 4px 0px #403D39,
+  -3px -1px 5px 0px #403D39;
 }
 
-.business-name {
-  width: 90vw;
-}
+
 
 .address-container {
-  width: 90vw;
+  text-align: center;
 }
 
-.job-description-container {
-  width: 90vw;
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
 }
 
-.job-pay {
-  width: 90vw;
-} */
-
-.start-job {
-  width: 45vw;
+.start-job-btn {
+  width: 9vw;
 }
 
 .finish-job {
-  width: 45vw;
+  width: 9vw;
 }

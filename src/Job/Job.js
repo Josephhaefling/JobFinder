@@ -8,7 +8,6 @@ function Job(props) {
 
   const job = (
     <section data-testid="job-container" className="job-container">
-    <h1>{employeeId}</h1>
       <h1 data-testid="job-time" className="job-time">{time}</h1>
       <h2 data-testid="business-name" className="business-name">{businessName}</h2>
       <section data-testid="address-container" className="address-container">
