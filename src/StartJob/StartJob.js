@@ -8,9 +8,17 @@ import { Link } from 'react-router-dom'
 
 
 function StartJob(props) {
-  const { setCurrentJob, setAvailableJobsList, availableJobsList, setStartTime, setEndTime } = props
+  const { setCurrentJob, setAvailableJobsList, availableJobsList, setStartTime, setEndTime, startTime, setJobIsStarted, jobIsStarted } = props
   const { businessName, contactPerson, personImage, jobDate, time, bathroomInfo, breakroomInfo, cost } = props.jobInfo
   const { street, city, state, postcode } = props.jobInfo.location
+
+  const determineIfJobIsStarted = (buttonClicked) => {
+    console.log(jobIsStarted);
+    if(!jobIsStarted) {
+      buttonClicked.preventDefault()
+    }
+  }
+
 return (
   <section data-testid="start-job-page" className="start-job-page">
     <h1 data-testid="contact-person" className="contact-person">Contact: {contactPerson.first} {contactPerson.last}</h1>
@@ -25,12 +33,22 @@ return (
         </section>
         <h2 data-testid="job-pay" className="job-pay">${cost}</h2>
         <section className="buttons-container">
-        <img src={startJob} data-testid="start-job" className="start-job-btn" onClick={() => setStartTime(moment().format("hh:mm:ss a"))} />
+        <img 
+          src={startJob} 
+          data-testid="start-job" 
+          disabled={jobIsStarted}
+          className="start-job-btn" 
+          onClick={() => {
+          setStartTime(moment().format("hh:mm:ss a"))
+          setJobIsStarted(true)
+        }} />
         <Link
             to={'/RateBusiness'}
             aria-label="submit rating btn"
             data-testid="submit-rating-btn"
+            onClick={(e) => determineIfJobIsStarted(e)}
             style={{ textDecoration: 'none' }}
+            disabled={jobIsStarted}
           >
           <img
             src={finishJob}

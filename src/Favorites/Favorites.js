@@ -20,7 +20,6 @@ function Favorites(props) {
       >
         <Job data-testid={job.time} key={job.time} job={job} id={job.employeeId} />
       </Link>        
-      {/* {favButton} */}
       </section>
      </section>
     )

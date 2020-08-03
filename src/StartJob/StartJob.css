@@ -37,3 +37,23 @@
 .finish-job {
   width: 9vw;
 }
+
+@media screen and (min-device-width: 760px) {
+  .contact-image {
+    width: 40vw;
+  }
+}
+
+  @media screen and (min-device-width: 1260px) {
+    .contact-image {
+      width: 25vw;
+    }
+
+    .start-job-btn {
+      width: 4vw;
+    }
+
+    .finish-job {
+      width: 4vw;
+    }
+  }
