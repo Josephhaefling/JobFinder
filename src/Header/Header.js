@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import stink from '../assets/stinkyBaby.png'
+import './Header.css';
+
 
 
 function Header(props) {
@@ -15,9 +18,11 @@ function Header(props) {
           style={{ textDecoration: 'none' }}
           onClick={() => setIsOnHomePage(!isOnHomePage)}
         >
-          <button
+          <img
+          src={stink}
+          className="nav-btn"
           onClick={() => setIsOnHomePage(!isOnHomePage)}
-          >Options</button>
+          />
         </Link>
           )
     } else {
@@ -28,7 +33,10 @@ function Header(props) {
           data-testid="back-btn"
           style={{ textDecoration: 'none' }}
         >
-          <button onClick={() => setIsOnHomePage(!isOnHomePage)}>Home</button>
+          <button 
+            className="nav-btn"
+            onClick={() => setIsOnHomePage(!isOnHomePage)}>
+          Home</button>
         </Link>
       )
     }

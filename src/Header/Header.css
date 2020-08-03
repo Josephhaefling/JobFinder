@@ -1,0 +1,29 @@
+/* FFFCF2 - off white
+CCC5B9 light grey
+403D39 dark grey
+252422 black
+EB5E28 orange */
+
+.nav-bar {
+    background-color: #403D39;
+    color: #FFFCF2;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-btn {
+    border-radius: 50%;
+    height: 7vh;
+    width: 12vw;
+    margin-top: 10%;
+    margin-right: 20%;
+    padding: 3% 20% 3% 20%;
+}
+
+.main-header {
+    color: #FFFCF2;
+    font-size: 36px;
+    margin: 0;
+    padding: 3%;
+}
+
