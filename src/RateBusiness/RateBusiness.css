@@ -34,3 +34,24 @@ form {
     margin: 5% 0% 5% 5%;
     width: 20vw;
 }
+
+@media screen and (min-device-width: 1260px) {
+  form {
+    align-items: center;
+    margin: 5% 15% 5% 15%;
+  }
+
+  .question-container {
+    display: flex;
+    align-items: center;
+    margin-left: 15%;
+    width: 25vw;
+  }
+
+  .rate-business-questions {
+    font-weight: bold;
+    margin: 4% 3% 0% 4%;
+  }
+
+  /* .business-rating-butt */
+}

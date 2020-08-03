@@ -8,15 +8,20 @@ function useJobsContainer(jobsList, userId) {
   }
 
   const sortJobsByTime = (userJobs) => {
-    const matches = []
     const sortedJobs = userJobs.sort((a, b) => {
-      if(parseInt(a.time) - parseInt(b.time) === 0) {
-        matches.push(userJobs.indexOf(b))
-      }
-      return a.time - b.time
+      const timeA = a.time.split(':')
+      const timeB = b.time.split(':')
+      return timeA[0] - timeB[0]
     })
-      matches.forEach(match => userJobs.splice(match, 1))
-    return userJobs
+    const jobsAsObject = sortedJobs.reduce((acc, job) => {
+      if(!acc[job.time]) {
+         acc[job.time] = job
+      }
+      return acc
+    },{})
+    const jobKeys = Object.keys(jobsAsObject)
+    const finalJobsList = jobKeys.map(jobKey => jobsAsObject[jobKey])
+    return finalJobsList
   }
 
     const jobsSortedByUser = () => {

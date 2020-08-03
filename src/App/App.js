@@ -18,7 +18,7 @@ function App() {
   const [ currentJob, setCurrentJob ] = useState({})
   const [ completedJobs, setCompletedJobs ] = useState([])
   const [ currentBusinessList, setBusinessList ] = useState([])
-  const [currentUsersJobs, setCurrentUsersJobs] = useState([])
+  const [ currentUsersJobs, setCurrentUsersJobs ] = useState([])
   const [ endTime, setEndTime ] = useState('')
   const [ favoriteJobs, setFavoriteJobs ] = useState([])
   const [ isOnHomePage, setIsOnHomePage ] = useState(true)
@@ -118,10 +118,12 @@ function App() {
             completedJobs={ completedJobs }
             currentJob={ currentJob }
             favoriteJobs={ favoriteJobs }
+            jobIsStarted={ jobIsStarted }
             setAvailableJobs={ setAvailableJobsList }
             setCompletedJobs={ setCompletedJobs }
             setCurrentJob={ setCurrentJob }
             setFavoriteJobs={ setFavoriteJobs }
+            setJobIsStarted={ setJobIsStarted }
           />
           </section>
         )

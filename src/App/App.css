@@ -24,3 +24,8 @@ EB5E28 orange */
   margin: 0;
   padding-top: 5%;
 }
+
+@media screen and (min-device-width: 1260px) {
+  .App {
+  }
+}
