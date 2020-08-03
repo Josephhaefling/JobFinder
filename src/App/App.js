@@ -27,12 +27,15 @@ function App() {
   const [ startTime, setStartTime ] = useState('')
   const [ userId, setUseId ] = useState(3)
   const { businessList, availableJobs } = useApp(availableJobsList) || {businessList: currentBusinessList, availableJobs: availableJobsList}
-  const removeFromFavorites = (event, favJobs) => {
+  const findJob = (jobId) => {
+    return favoriteJobs.find(job => job.jobId === jobId)
+  }
+  const removeFromFavorites = (event) => {
     const removeId = event.target.name
-    const jobToRemove = favoriteJobs.find(job => job.jobId === removeId)
+    const jobToRemove = findJob(removeId)
     const newFavsArray = favoriteJobs.filter(job => job.jobId !== jobToRemove.jobId)
     setFavoriteJobs(newFavsArray)
-    
+
   }
   const mainPage = (
     <section data-testid="App" className="App">
@@ -41,14 +44,15 @@ function App() {
           <h3 data-testid="user-greeting" className="user-greeting">Welcome Back, Michael!</h3>
         </section>
         <JobsContainer
-          jobs={ availableJobsList }
-          favoriteJobs={ favoriteJobs }
-          setFavoriteJobs={ setFavoriteJobs }
-          removeFromFavorites={ removeFromFavorites }
           currentUser={ userId }
           currentUsersJobs={ currentUsersJobs }
+          favoriteJobs={ favoriteJobs }
+          findJob={ findJob }
+          jobs={ availableJobsList }
+          removeFromFavorites={ removeFromFavorites }
           setCurrentJob={ setCurrentJob }
           setCurrentUsersJobs={setCurrentUsersJobs}
+          setFavoriteJobs={ setFavoriteJobs }
         />
       </main>
     </section>
@@ -96,8 +100,7 @@ function App() {
         return (
           <section>
             <Header isOnHomePage={ isOnHomePage } setIsOnHomePage={ setIsOnHomePage } />
-            <Options
-          />
+            <Options />
           </section>
         )
       }}
@@ -111,13 +114,13 @@ function App() {
           <section>
           <Header isOnHomePage={ isOnHomePage } setIsOnHomePage={ setIsOnHomePage } />
           <RateBusiness
-            currentJob={ currentJob }
-            setCurrentJob={ setCurrentJob }
-            setAvailableJobs={ setAvailableJobsList }
             availableJobsList={ availableJobsList }
             completedJobs={ completedJobs }
-            setCompletedJobs={ setCompletedJobs }
+            currentJob={ currentJob }
             favoriteJobs={ favoriteJobs }
+            setAvailableJobs={ setAvailableJobsList }
+            setCompletedJobs={ setCompletedJobs }
+            setCurrentJob={ setCurrentJob }
             setFavoriteJobs={ setFavoriteJobs }
           />
           </section>
@@ -143,6 +146,7 @@ function App() {
             setEndTime={ setEndTime }
             avavialbleJobsList={ availableJobsList }
             setAvailableJobsList={ setAvailableJobsList }
+            setStartTime={ setStartTime }
           />
           </section>
         )

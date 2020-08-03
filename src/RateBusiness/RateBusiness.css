@@ -2,16 +2,14 @@ form {
   display: flex;
   flex-direction: column;
   background-color: #FFFCF2;
-}
-.name-of-business {
-  background-color: #403D39;
-  color: #FFFCF2;
-}
+  padding: 5% 0% 5% 0%;
 
-.question-container {
-  width: 90vw;
-  display: flex;
-  margin-left: 4%;
+} 
+
+.name-of-business {
+  background-color: #FFFCF2;
+  color: #403D39;
+  margin: -1% 5% 0% 4%;
 }
 
 .rate-business-btn {
@@ -23,3 +21,16 @@ form {
     font-weight: bold;
     margin: 4% 3% 0% 4%;
   }
+
+  .submit-business-rating {
+    background-color: #EB5E28;
+    border: none;
+    border-radius: 3px;
+    color: #FFFCF2;
+    box-shadow: 1px 2px 4px 0px #403D39,
+    -1px 0px 5px 1px #403D39;
+    font-weight: bold;
+    height: 4vh;
+    margin: 5% 0% 5% 5%;
+    width: 20vw;
+}

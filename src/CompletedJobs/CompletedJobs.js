@@ -1,5 +1,6 @@
 import React from 'react'
 import Job from '../Job/Job'
+import './CompletedJobs.css';
 import { Link } from 'react-router-dom'
 import './CompletedJobs.css';
 
@@ -14,16 +15,19 @@ function CompletedJobs(props) {
 
 
   const allCompletedJobs = completedJobs.length > 0 && completedJobs.map(job => (
-    <Link
-        to={`/${job.businessName}`}
-        aria-label="current-job"
-        data-testid={job.time}
-        key={job.time}
-        style={{ textDecoration: 'none' }}
-        onClick={() => props.setCurrentJob(job)}
-      >
-        <Job key={job.time} job={job} id={job.employeeId} />
-      </Link>
+      <section className="jobs-container">
+        <Link
+            to={`/${job.businessName}`}
+            aria-label="current-job"
+            className="completed-links"
+            data-testid={job.time}
+            key={job.time}
+            style={{ textDecoration: 'none' }}
+            onClick={() => props.setCurrentJob(job)}
+          >
+            <Job key={job.time} job={job} id={job.employeeId} />
+          </Link>
+      </section>
     )
   )
 

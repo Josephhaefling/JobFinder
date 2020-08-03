@@ -1,0 +1,38 @@
+
+
+.header-section {
+    width: 102vw;
+    background-color: #403D39;
+}
+
+.nav-bar {
+    background-color: #403D39;
+    color: #FFFCF2;
+    display: flex;
+    justify-content: space-between;
+}
+
+.options-btn {
+    border-radius: 50%;
+    filter: drop-shadow(1px 1px 1px #EB5E28);
+    height: 7vh;
+    width: 12vw;
+    margin-top: 10%;
+    padding: 3% 20% 3% 20%;
+}
+.home-btn {
+    border-radius: 5px;
+    filter: drop-shadow(1px 1px 1px #EB5E28);
+    height: 7vh;
+    width: 12vw;
+    margin-top: 10%;
+    padding: 3% 20% 3% 20%;
+}
+
+.main-header {
+    color: #FFFCF2;
+    font-size: 36px;
+    margin: 0;
+    padding: 3%;
+}
+

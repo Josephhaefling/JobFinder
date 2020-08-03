@@ -1,13 +1,31 @@
-.user-jobs {
+ .user-jobs {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
-a {
-  color: #252422;
-  justify-content: center;
+
+.jobs-container {
+    filter: saturate(75%);
+  align-items: center;
+  background-color: #FFFCF2;
+  border-radius: 5px;
+  box-shadow: 2px 2px 0px 0px #EB5E28,
+  -1px -1px 0px 0 #EB5E28;
+  color: #403D39;
   display: flex;
-  width: 100vw;
+  flex-direction: column;
+  margin-top: 10%;  
+  width: 80vw;
 }
+
+.current-job-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.fav-btn {
+  height: 6vh;
+  width: 6vh;
+} 

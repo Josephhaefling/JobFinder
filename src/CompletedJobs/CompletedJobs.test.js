@@ -43,4 +43,6 @@ describe('CompletedJobs', () => {
     expect(completedJobsContainer).toBeInTheDocument()
     expect(completedJob).toBeInTheDocument()
   })
+  //Test that jobs are links and that the url path changes when a job is clicked
+
 })
