@@ -63,6 +63,7 @@ function App() {
     setAvailableJobsList(availableJobs)
   })
 
+  
   return (
     <Switch>
     <Route
@@ -138,6 +139,7 @@ function App() {
           <section>
           <Header isOnHomePage={ isOnHomePage } setIsOnHomePage={ setIsOnHomePage } />
           <StartJob
+          
             {...routeProps}
             jobInfo={ currentJob }
             setCurrentJob={ setCurrentJob }
