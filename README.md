@@ -1,6 +1,4 @@
 ## Nine2Five
-### This application is deployed on github pages: 
-
 
 ## Abstract
 Nine2Five is an application for people with developmental disabilities who work in the janitorial services industry.It allows users to see a list of their jobs for today. Each job has time, contact person, and address so that the employee can check in with the contect person when they arrive. The user clicks a start job button when they begin the job and a finish job button when they finish the job which tracks how long they took to complete the task. After a user completes a job they are asked to complete a form which rates the business which they worked at. The user can add jobs to favorites so that they can choose to do those jobs again in the future.
