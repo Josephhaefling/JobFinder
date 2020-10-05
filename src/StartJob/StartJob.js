@@ -2,7 +2,8 @@ import React from 'react'
 import moment from 'moment';
 import './StartJob.css';
 import finishJob from '../assets/finish-flag.png'
-import startJob from '../assets/stopwatch.png'
+import notStarted from '../assets/stopwatch.png'
+import started from '../assets/timerStarted.png'
 import { Link } from 'react-router-dom'
 
 
@@ -13,7 +14,6 @@ function StartJob(props) {
   const { street, city, state, postcode } = props.jobInfo.location
 
   const determineIfJobIsStarted = (buttonClicked) => {
-    console.log(jobIsStarted);
     if(!jobIsStarted) {
       buttonClicked.preventDefault()
     }
@@ -34,13 +34,14 @@ return (
         <h2 data-testid="job-pay" className="job-pay">${cost}</h2>
         <section className="buttons-container">
         <img 
-          src={startJob} 
+          src={notStarted} 
           data-testid="start-job" 
           disabled={jobIsStarted}
           className="start-job-btn" 
-          onClick={() => {
-          setStartTime(moment().format("hh:mm:ss a"))
-          setJobIsStarted(true)
+          onClick={(e) => {
+            e.target.src = started
+            setStartTime(moment().format("hh:mm:ss a"))
+            setJobIsStarted(true)
         }} />
         <Link
             to={'/RateBusiness'}
