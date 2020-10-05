@@ -30,7 +30,7 @@ describe('Header', () => {
   })
 
 
-  it('should render the header and options button', () => {
+  it('should render the header and options button', async () => {
 
     const { getByTestId } = render(headerElement1)
 

@@ -26,6 +26,7 @@
 }
 
 .fav-btn {
+  cursor: pointer;
   height: 6vh;
   width: 6vh;
 } 
